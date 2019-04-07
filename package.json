@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build-vendor:prod": "cross-env NODE_ENV=production webpack --config webpack.config.vendor.js --progress --display-error-details",
+    "build-vendor:dev": "cross-env NODE_ENV=development webpack --config webpack.config.vendor.js --progress",
+    "build:prod": "cross-env NODE_ENV=production webpack --config webpack.config.js --progress --display-error-details",
+    "build:dev": "cross-env NODE_ENV=development webpack --config webpack.config.js --progress"
   },
   "repository": {
     "type": "git",
@@ -16,5 +19,22 @@
   "bugs": {
     "url": "https://github.com/greenfig/greenfig.github.io/issues"
   },
-  "homepage": "https://github.com/greenfig/greenfig.github.io#readme"
+  "homepage": "https://github.com/greenfig/greenfig.github.io#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "bootstrap": "^4.3.1",
+    "cross-env": "^5.2.0",
+    "css-loader": "^2.1.1",
+    "html-webpack-plugin": "^3.2.0",
+    "jquery": "^3.3.1",
+    "mini-css-extract-plugin": "^0.5.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "popper.js": "^1.15.0",
+    "uglifyjs-webpack-plugin": "^2.1.2",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
+  },
+  "dependencies": {}
 }
