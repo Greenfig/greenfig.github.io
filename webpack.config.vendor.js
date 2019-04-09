@@ -9,7 +9,6 @@ module.exports = () => {
 
   console.log('Building vendor files for \x1b[33m%s\x1Db[0m', process.env.NODE_ENV)
   console.log('isDebBuild? \x1b[33m%s\x1Db[0m', isDevBuild, '\n')
-  console.log(path.join(__dirname, 'assets', 'vendor'))
   return [{
     mode: isDevBuild ? 'development' : 'production',
     stats: { modules: false },
@@ -30,7 +29,7 @@ module.exports = () => {
         'jquery']
     },
     output: {
-      path: path.join(__dirname, 'assets', 'vendor'),
+      path: path.join(__dirname, 'dist', 'vendor'),
       filename: '[name].js',
       library: '[name]_[hash]'
     },
@@ -47,7 +46,7 @@ module.exports = () => {
         /* For modal, you will need to add tether */
       }), // Maps these identifiers to the jQuery package (because Bootstrap expects it to be a global variable)
       new webpack.DllPlugin({
-        path: path.join(__dirname, 'assets', 'vendor', '[name]-manifest.json'),
+        path: path.join(__dirname, 'dist', 'vendor', '[name]-manifest.json'),
         name: '[name]_[hash]'
       })
     ],
