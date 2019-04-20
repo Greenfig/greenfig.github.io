@@ -14,8 +14,9 @@ const HtmlViews = () => {
   fileList.forEach(file => {
     let filename = file.split('.')[0]
     hwp.push(new HtmlWebpackPlugin({
+      contentfilename: filename,
       filename: path.join(__dirname, `${filename}.html`),
-      template: path.join(__dirname, `/src/views/${filename}.ejs`),
+      template: path.join(__dirname, `/src/_shared/_layout.ejs`),
       minify: isDevBuild ? {} : {
         collapseWhitespace: true,
         removeAttributeQuotes: true,
@@ -71,19 +72,7 @@ module.exports = () => {
         new DllReferencePlugin({
             context: __dirname,
             manifest: require('./dist/vendor/vendor-manifest.json')
-          }),
-        new HtmlWebpackPlugin({
-          filename: path.join(__dirname, '/_layout.html'),
-          template: path.join(__dirname, '/src/_shared/_layout.ejs'),
-          minify: isDevBuild ? {} : {
-            collapseWhitespace: true,
-            removeAttributeQuotes: true,
-            removeComments: true
-          },
-          nodeModules: process.env.NODE_ENV !== 'production'
-            ? path.join(__dirname, '../node_modules')
-            : false
-        })
+          })
     ],
     optimization: isDevBuild ? {} : { minimizer: [
         new UglifyJsPlugin({
