@@ -1,12 +1,15 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const DllReferencePlugin = require('webpack').DllReferencePlugin
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const MiniCSSExtractPlugin = require('mini-css-extract-plugin')
+const webpack = require('webpack')
 const path = require('path')
 const fs = require('fs')
 
 let isDevBuild = !(process.env.NODE_ENV && process.env.NODE_ENV === 'production')
-const resolve = (filePath) => path.join(__dirname, filePath)
+console.log('Building vendor files for \x1b[33m%s\x1Db[0m', process.env.NODE_ENV)
+console.log('isDebBuild? \x1b[33m%s\x1Db[0m', isDevBuild, '\n')
+
+const resolvePath = (filePath) => path.join(__dirname, filePath)
 
 const HtmlViews = () => {  
   let hwp = []
@@ -15,15 +18,15 @@ const HtmlViews = () => {
     let filename = file.split('.')[0]
     hwp.push(new HtmlWebpackPlugin({
       contentfilename: filename,
-      filename: path.join(__dirname, `${filename}.html`),
-      template: path.join(__dirname, `/src/_shared/_layout.ejs`),
+      filename: resolvePath(`${filename}.html`),
+      template: resolvePath(`/src/_shared/_layout.ejs`),
       minify: isDevBuild ? {} : {
         collapseWhitespace: true,
         removeAttributeQuotes: true,
         removeComments: true
       },
       nodeModules: process.env.NODE_ENV !== 'production'
-        ? path.join(__dirname, '../node_modules')
+        ? resolvePath('../node_modules')
         : false
     }))
   })
@@ -31,7 +34,7 @@ const HtmlViews = () => {
 }
 
 module.exports = () => {
-  let webpack =
+  let WebPack =
   {
     mode: isDevBuild ? 'development' : 'production',
     entry: {
@@ -41,40 +44,38 @@ module.exports = () => {
       path: path.join(__dirname, './dist'),
       filename: 'bundle.js'
     },
+    resolve: {
+      extensions: ['.js'],
+      alias: {
+        '~': __dirname
+      }
+    },
     module: {
         rules: [
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader'
-                }
-            },
-            {
-                test: /\.css$/,
-                use: ExtractTextPlugin.extract({
-                  fallback: 'style-loader',
-                  use: 'css-loader'
-                })
-            },
-            {
-                test: /\.scss$/,
-                use: ExtractTextPlugin.extract({
-                  fallback: 'style-loader',
-                  use: ['css-loader', 'sass-loader']
-                })
+          {
+            test: /\.js$/,
+            exclude: /node_modules/,
+            use: {
+                loader: 'babel-loader'
             }
+          },
+          { test: /\.(png|woff|woff2|eot|ttf|svg)(\?|$)/, use: 'url-loader?limit=100000' },
+          { test: /\.css(\?|$)/, use: [MiniCSSExtractPlugin.loader, 'css-loader'] },
+          { test: /\.scss(\?|$)/, use: [MiniCSSExtractPlugin.loader, 'css-loader', 'sass-loader'] }
         ]
     },
     plugins: [
         // Extract all css into this file
-        new ExtractTextPlugin('bundle.css'),
-        new DllReferencePlugin({
-            context: __dirname,
-            manifest: require('./dist/vendor/vendor-manifest.json')
-          })
+        new MiniCSSExtractPlugin({ filename: 'bundle.[contenthash:8].css' }),
+        new webpack.ProvidePlugin({
+          $: 'jquery',
+          jQuery: 'jquery',
+          Popper: ['popper.js', 'default']
+          /* For modal, you will need to add tether */
+        })
     ],
-    optimization: isDevBuild ? {} : { minimizer: [
+    optimization: isDevBuild ? {} : {
+      minimizer: [
         new UglifyJsPlugin({
           cache: true,
           parallel: true,
@@ -94,6 +95,23 @@ module.exports = () => {
     ]}
   }
   // Add html plugins
-  webpack.plugins = webpack.plugins.concat(HtmlViews())
-  return webpack
+  WebPack.plugins = WebPack.plugins.concat(HtmlViews())
+  // Vendors
+  WebPack.optimization.splitChunks = {
+    chunks: 'all', // Place all modules into one bundle
+    cacheGroups: {
+      vendors: {
+        test: /[\\/]node_modules[\\/]/,
+        name(module) {
+          // get the name. E.g. node_modules/packageName/not/this/part.js
+          // or node_modules/packageName
+          const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
+
+          // npm package names are URL-safe, but some servers don't like @ symbols
+          return `${packageName.replace(/(@)|(.js)/, '')}`;
+        }
+      }
+    }
+  }
+  return WebPack
 }

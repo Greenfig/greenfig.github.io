@@ -5,3 +5,8 @@ body {
 .main-container {
   width: 100vw;
   height: 100vh; }
+
+.main-content {
+  min-height: calc(100vh - 56px);
+  padding-top: 56px; }
+
