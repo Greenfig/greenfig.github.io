@@ -4,8 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build-vendor:prod": "cross-env NODE_ENV=production webpack --config webpack.config.vendor.js --progress --display-error-details",
-    "build-vendor:dev": "cross-env NODE_ENV=development webpack --config webpack.config.vendor.js --progress",
     "build:prod": "cross-env NODE_ENV=production webpack --config webpack.config.js --progress --display-error-details",
     "build:dev": "cross-env NODE_ENV=development webpack --config webpack.config.js --progress"
   },
