@@ -1,4 +1,9 @@
-<div class="main-content" style="height:1000px;">
+<div class="main-content">
+  <header>
+    <div class="container"></div>
+      <!-- <img id="avatarImg" src="../assets/img/avatar.svg"/> -->
+    </div>
+  </header>
   <button class="btn btn-primary">Hello</button>
   <span>Hello World</span>
   <div class="dropdown">
@@ -12,6 +17,11 @@
     </div>
   </div>
 </div>
-<script>
-  console.log($)
-</script>
+
+<style rel="stylesheet/scss" lang="scss" scoped>
+  header {
+    height: 200px;
+    padding-top: calc(6rem + 104px);
+    padding-bottom: 6rem;
+  }
+</style>

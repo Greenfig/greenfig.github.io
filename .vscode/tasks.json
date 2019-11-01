@@ -19,11 +19,13 @@
             "problemMatcher": []
         },
         {
+            "label": "buildDev",
             "type": "npm",
             "script": "build:dev",
             "problemMatcher": []
         },
         {
+            "label": "buildProd",
             "type": "npm",
             "script": "build:prod",
             "problemMatcher": []

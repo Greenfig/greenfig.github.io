@@ -5,6 +5,7 @@ const MiniCSSExtractPlugin = require('mini-css-extract-plugin')
 const webpack = require('webpack')
 const path = require('path')
 const fs = require('fs')
+const utils = require('./config/utils.js')
 
 let isDevBuild = !(process.env.NODE_ENV && process.env.NODE_ENV === 'production')
 console.log('Building vendor files for \x1b[33m%s\x1Db[0m', process.env.NODE_ENV)
@@ -12,12 +13,11 @@ console.log('isDebBuild? \x1b[33m%s\x1Db[0m', isDevBuild, '\n')
 
 const resolvePath = (filePath) => path.join(__dirname, filePath)
 
-const HtmlViews = () => {  
-  let hwp = []
+const HtmlViews = () => {
   let fileList = fs.readdirSync('./src/views')
-  fileList.forEach(file => {
+  return fileList.map(file => {
     let filename = file.split('.')[0]
-    hwp.push(new HtmlWebpackPlugin({
+    return new HtmlWebpackPlugin({
       contentfilename: filename,
       filename: resolvePath(`${filename}.html`),
       template: resolvePath(`/src/_shared/_layout.ejs`),
@@ -26,27 +26,25 @@ const HtmlViews = () => {
         removeAttributeQuotes: true,
         removeComments: true
       },
-      nodeModules: process.env.NODE_ENV !== 'production'
-        ? resolvePath('../node_modules')
-        : false
-    }))
+      nodeModules: isDevBuild ? resolvePath('./node_modules') : false
+    })
   })
-  return hwp
 }
 
 module.exports = () => {
   let WebPack =
   {
+    target: 'web',
     mode: isDevBuild ? 'development' : 'production',
     entry: {
-      main: './src/assets/js/app.js'
+      main: './src/main/app.js'
     },
     output: {
       path: path.join(__dirname, './dist'),
-      filename: 'bundle.js'
+      filename: '[name].js'
     },
     resolve: {
-      extensions: ['.js'],
+      extensions: ['.js', '.ejs'],
       alias: {
         '~': __dirname
       }
@@ -57,12 +55,19 @@ module.exports = () => {
             test: /\.js$/,
             exclude: /node_modules/,
             use: {
-                loader: 'babel-loader'
+              loader: 'babel-loader'
             }
           },
           { test: /\.(png|woff|woff2|eot|ttf|svg)(\?|$)/, use: 'url-loader?limit=100000' },
-          { test: /\.css(\?|$)/, use: [MiniCSSExtractPlugin.loader, 'css-loader'] },
-          { test: /\.scss(\?|$)/, use: [MiniCSSExtractPlugin.loader, 'css-loader', 'sass-loader'] }
+          { test: /\.(sa|sc|c)ss(\?|$)/, use: [MiniCSSExtractPlugin.loader, 'css-loader', 'sass-loader'] },
+          {
+            test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+            loader: 'url-loader',
+            options: {
+              limit: 10000,
+              name: path.join(__dirname, './dist/img/[name].[hash:7].[ext]')
+            }
+          }
         ]
     },
     plugins: [

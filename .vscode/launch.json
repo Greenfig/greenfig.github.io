@@ -10,7 +10,7 @@
             "name": "Launch Chrome against localhost",
             "url": "E:\\Programming\\greenfig.github.io\\index.html",
             "webRoot": "${workspaceFolder}",
-            "preLaunchTask": "npm: build:dev"
+            "preLaunchTask": "buildDev",
         }
     ]
 }
