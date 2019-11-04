@@ -2,6 +2,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const JavaScriptObfuscator = require('javascript-obfuscator')
+const ManifestPlugin = require('webpack-manifest-plugin') 
+const csso = require('csso')
 const webpack = require('webpack')
 const path = require('path')
 const fs = require('fs')
@@ -41,6 +45,7 @@ module.exports = () => {
     },
     output: {
       path: path.join(__dirname, './dist'),
+      // publicPath: 'dist/',
       filename: '[name].js'
     },
     resolve: {
@@ -58,7 +63,9 @@ module.exports = () => {
               loader: 'babel-loader'
             }
           },
-          { test: /\.(png|woff|woff2|eot|ttf|svg)(\?|$)/, use: 'url-loader?limit=100000' },
+          // { test: /\.(ejs)(\?|$)/, use: 'underscore-template-loader' },
+          { test: /\.(svg)(\?|$)/, use: 'raw-loader' },
+          { test: /\.(png|woff|woff2|eot|ttf)(\?|$)/, use: 'url-loader?limit=100000' },
           { test: /\.(sa|sc|c)ss(\?|$)/, use: [MiniCSSExtractPlugin.loader, 'css-loader', 'sass-loader'] },
           {
             test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
@@ -67,6 +74,16 @@ module.exports = () => {
               limit: 10000,
               name: path.join(__dirname, './dist/img/[name].[hash:7].[ext]')
             }
+          },
+          {
+            test: require.resolve('jquery'),
+            loader: 'expose-loader',
+            options: 'jQuery'
+          },
+          {
+            test: require.resolve('jquery'),
+            loader: 'expose-loader',
+            options: '$'
           }
         ]
     },
@@ -78,7 +95,40 @@ module.exports = () => {
           jQuery: 'jquery',
           Popper: ['popper.js', 'default']
           /* For modal, you will need to add tether */
-        })
+        }),
+        new ManifestPlugin({
+          fileName: 'mainfest.json',
+          // Remove ejs to html keys from the manifest
+          filter: (file) => file.name && !/(.html)/.test(file.name)
+        }),
+        new CopyWebpackPlugin([
+          {
+            from: 'src/assets/js/*',
+            to: 'dist/',
+            transform: (fileContent, path) => isDevBuild ? fileContent : JavaScriptObfuscator.obfuscate(fileContent.toString(), {
+              compact: true,
+              controlFlowFlattening: false,
+              deadCodeInjection: false,
+              debugProtection: false,
+              debugProtectionInterval: false,
+              disableConsoleOutput: true,
+              identifierNamesGenerator: 'hexadecimal',
+              log: false,
+              renameGlobals: false,
+              rotateStringArray: true,
+              selfDefending: true,
+              stringArray: true,
+              stringArrayEncoding: false,
+              stringArrayThreshold: 0.75,
+              unicodeEscapeSequence: false
+            }).getObfuscatedCode()
+          },
+          {
+            from: 'src/assets/css/*',
+            to: 'dist/',
+            transform: (fileContent, path) => isDevBuild ? fileContent : csso.minify(fileContent.toString()).css
+          }
+        ])
     ],
     optimization: isDevBuild ? {} : {
       minimizer: [
@@ -100,6 +150,7 @@ module.exports = () => {
         })
     ]}
   }
+
   // Add html plugins
   WebPack.plugins = WebPack.plugins.concat(HtmlViews())
   // Vendors
