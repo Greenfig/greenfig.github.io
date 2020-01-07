@@ -1,55 +1,39 @@
 {
-  "name": "greenfig.github.io",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "build:prod": "node config/cleanup.js && cross-env NODE_ENV=production webpack --config webpack.config.js --progress --display-error-details",
-    "build:dev": "node config/cleanup.js && cross-env NODE_ENV=development webpack --config webpack.config.js --progress --display-error-details"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/greenfig/greenfig.github.io.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/greenfig/greenfig.github.io/issues"
-  },
-  "homepage": "https://github.com/greenfig/greenfig.github.io#readme",
-  "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.5",
-    "babel-preset-env": "^1.7.0",
-    "bootstrap": "^4.3.1",
-    "copy-webpack-plugin": "^5.0.4",
-    "cross-env": "^5.2.1",
-    "css-loader": "^2.1.1",
-    "csso": "^4.0.2",
-    "del": "^5.1.0",
-    "expose-loader": "^0.7.5",
-    "file-loader": "^4.2.0",
-    "html-loader": "^0.5.5",
-    "html-webpack-plugin": "^3.2.0",
-    "javascript-obfuscator": "^0.18.1",
-    "jquery": "^3.4.1",
-    "mini-css-extract-plugin": "^0.6.0",
-    "node-sass": "^4.13.0",
-    "optimize-css-assets-webpack-plugin": "^5.0.3",
-    "popper.js": "^1.16.0",
-    "raw-loader": "^3.1.0",
-    "sass-loader": "^7.3.1",
-    "style-loader": "^0.23.1",
-    "svg-inline-loader": "^0.8.0",
-    "svg-loader": "0.0.2",
-    "svg-url-loader": "^3.0.2",
-    "uglifyjs-webpack-plugin": "^2.2.0",
-    "underscore-template-loader": "^1.0.0",
-    "url-loader": "^2.2.0",
-    "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.9",
-    "webpack-manifest-plugin": "^2.2.0"
-  },
-  "dependencies": {}
+    "name": "greenfig.github.io",
+    "version": "0.0.1",
+    "description": "A Quasar Framework app",
+    "productName": "Quasar App",
+    "cordovaId": "org.cordova.quasar.app",
+    "capacitorId": "",
+    "author": "Greenfig <rene_anderson@hotmail.com>",
+    "private": true,
+    "scripts": {
+        "lint": "eslint --ext .js,.vue src",
+        "test": "echo \"No test specified\" && exit 0",
+        "dev": "quasar dev",
+        "build": "quasar build",
+        "build:pwa": "quasar build -m pwa"
+    },
+    "dependencies": {
+        "@quasar/extras": "^1.0.0",
+        "axios": "^0.18.1",
+        "quasar": "^1.0.0",
+        "vue-i18n": "^8.0.0"
+    },
+    "devDependencies": {
+        "@quasar/app": "^1.0.0",
+        "@vue/eslint-config-standard": "^4.0.0",
+        "babel-eslint": "^10.0.1",
+        "eslint": "^5.10.0",
+        "eslint-loader": "^2.1.1",
+        "eslint-plugin-vue": "^5.0.0"
+    },
+    "engines": {
+        "node": ">= 8.9.0",
+        "npm": ">= 5.6.0",
+        "yarn": ">= 1.6.0"
+    },
+    "browserslist": [
+        "last 1 version, not dead, ie >= 11"
+    ]
 }
