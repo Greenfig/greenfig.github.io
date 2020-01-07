@@ -3,7 +3,6 @@
 
 module.exports = function (ctx) {
     return {
-        publicPath: process.env.NODE_ENV === 'production' ? '/dist/spa/' : '/',
         // app boot file (/src/boot)
         // --> boot files are part of "main.js"
         // https://quasar.dev/quasar-cli/cli-documentation/boot-files
@@ -53,6 +52,7 @@ module.exports = function (ctx) {
         build: {
             scopeHoisting: true,
             vueRouterMode: 'hash', // available values: 'hash', 'history'
+            publicPath: process.env.NODE_ENV === 'production' ? 'dist/spa/' : '/',
             showProgress: true,
             gzip: false,
             analyze: false,
