@@ -1,7 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-// import example from './module-example'
+// Store modules
+import api from './modules/api'
+import settings from './modules/settings'
+import nav from './modules/navigation'
 
 Vue.use(Vuex)
 
@@ -17,7 +20,9 @@ Vue.use(Vuex)
 export default function (/* { ssrContext } */) {
     const Store = new Vuex.Store({
         modules: {
-            // example
+            api: api,
+            settings: settings,
+            nav: nav
         },
 
         // enable strict mode (adds overhead!)

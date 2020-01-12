@@ -24,3 +24,6 @@ quasar build
 
 ### Customize the configuration
 See [Configuring quasar.conf.js](https://quasar.dev/quasar-cli/quasar-conf-js).
+
+### Auto redirect for github.io
+Once deployed index.html redirect to the dist/spa/index.html on navigating to the github.io url

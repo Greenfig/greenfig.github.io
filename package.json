@@ -12,7 +12,7 @@
         "lint:fix": "eslint --fix --ext .js,.vue src",
         "test": "echo \"No test specified\" && exit 0",
         "dev": "npm run lint:fix && quasar dev",
-        "build": "npm run lint:fix && quasar build",
+        "build": "quasar build",
         "build:pwa": "quasar build -m pwa"
     },
     "dependencies": {
