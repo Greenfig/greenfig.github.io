@@ -1,1 +1,70 @@
 // app global css in SCSS form
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+.q-layout {
+    min-height: 100vh;
+    max-height: 100vh;
+}
+.q-page-container {
+    min-height: 100vh;
+    max-height: 100vh;
+}
+.q-page {
+    overflow: auto;
+    height: calc(100vh - 51px);
+}
+.my-header {
+    min-height: 150px;
+    background-color: #41a4f5;
+    color: #fff;
+    font-weight: bold;
+    font-size: 2rem;
+    text-align: center;
+    padding: 30px 0;
+}
+
+@media (min-width: 576px) {
+    .container {
+        max-width: 540px;
+    }
+}
+@media (min-width: 768px) {
+    .container {
+        max-width: 720px;
+    }
+}
+@media (min-width: 992px) {
+    .container {
+        max-width: 960px;
+    }
+}
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+}
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}

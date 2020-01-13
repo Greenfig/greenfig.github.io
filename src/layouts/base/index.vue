@@ -16,10 +16,10 @@
                     </ul>
                 </q-toolbar-title>
                 <q-tabs align="left">
-                    <q-route-tab to="/page1" label="About" />
-                    <q-route-tab to="/page2" label="Projects" />
-                    <q-route-tab to="/page3" label="Resume" />
-                    <q-route-tab to="/page3" label="Contact" />
+                    <q-route-tab :to="value.path"
+                                 :label="value.title"
+                                 v-for="(value, index) in otherRoutes"
+                                 :key="index" />
                 </q-tabs>
             </q-toolbar>
 
@@ -34,13 +34,19 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import routes from 'src/router/routes'
 export default {
     data () {
         return {
+            homeRoutes: routes.find(f => f.title === 'About' && !f.hidden),
+            otherRoutes: routes.filter(f => f.title !== 'About' && !f.hidden)
         }
     },
     computed: {
         ...mapGetters(['getGithubSettings', 'getLinkedinSettings'])
+    },
+    mounted () {
+        console.log(routes)
     }
 }
 </script>
@@ -54,18 +60,17 @@ export default {
         padding: 0 5px;
         display: inline-block;
         a {
+            color: #d0e7fa;
             width: 36px;
             height: 36px;
-            padding-top: 7px;
-            display: inline-block;
+            display: flex;
             text-align: center;
             border-radius: 50%;
-            color: #d0e7fa;
             text-decoration: none;
+            vertical-align: middle;
             i {
-                display: block;
-                font-size: .75em;
-                margin: 5px 10px;
+                font-size: .915em;
+                margin: auto;
                 &:hover {
                     background-color: transparent;
                 }
@@ -85,5 +90,11 @@ export default {
 /deep/.q-tab, a {
     -webkit-transition: all 0.4s ease-in-out;
     transition: all 0.4s ease-in-out;
+}
+/deep/.q-tabs__label {
+    font-weight: normal;
+    &.active {
+        font-weight: 500;
+    }
 }
 </style>

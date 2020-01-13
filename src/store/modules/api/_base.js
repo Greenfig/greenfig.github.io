@@ -19,7 +19,7 @@ export const createNewInstance = () => {
                     timeout: 3 * 1000
                 })
             }
-            return Promise.resolve(response.data.content ? response.data.content : response)
+            return Promise.resolve(response.data.content ? response.data.content : (response.data || response))
         },
         error => {
             const showMessage = msg =>

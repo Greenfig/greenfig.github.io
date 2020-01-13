@@ -4,7 +4,6 @@ import Vuex from 'vuex'
 // Store modules
 import api from './modules/api'
 import settings from './modules/settings'
-import nav from './modules/navigation'
 
 Vue.use(Vuex)
 
@@ -21,8 +20,7 @@ export default function (/* { ssrContext } */) {
     const Store = new Vuex.Store({
         modules: {
             api: api,
-            settings: settings,
-            nav: nav
+            settings: settings
         },
 
         // enable strict mode (adds overhead!)

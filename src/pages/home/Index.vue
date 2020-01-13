@@ -1,6 +1,15 @@
 <template>
-    <q-page class="flex flex-center">
-        <img alt="Quasar logo" src="~assets/quasar-logo-full.svg">
+    <q-page>
+        <section class="my-header">
+            <div class="container">
+                Rene Anderson
+            </div>
+        </section>
+        <section>
+            <div class="container">
+                <github-repos v-bind:repos="myRepoList" />
+            </div>
+        </section>
     </q-page>
 </template>
 
@@ -8,6 +17,11 @@
 import { mapActions } from 'vuex'
 export default {
     name: 'PageIndex',
+    components: {
+        'github-repos': () => ({
+            component: import(/* webpackChunkName: "github" */ 'src/components/home/github')
+        })
+    },
     data () {
         return {
             myRepoList: []
@@ -17,7 +31,6 @@ export default {
         ...mapActions(['GET_USER_REPOS']),
         async getRepoList () {
             try {
-                console.log('ehllo                ')
                 this.myRepoList = await this.GET_USER_REPOS().catch(err => Promise.reject(err))
             } catch (err) {
                 console.error(err)
