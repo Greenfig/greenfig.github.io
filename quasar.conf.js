@@ -44,7 +44,9 @@ module.exports = function (ctx) {
                 'QCardActions',
                 'QCarousel',
                 'QCarouselControl',
-                'QCarouselSlide'
+                'QCarouselSlide',
+                'QTooltip',
+                'QImg'
             ],
             directives: [],
 

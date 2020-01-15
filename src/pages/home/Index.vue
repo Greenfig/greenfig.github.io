@@ -1,14 +1,16 @@
 <template>
     <q-page>
         <section class="my-header">
-            <div class="container">
-                Rene Anderson
-            </div>
+            <header-section />
         </section>
         <section>
-            <div class="container">
-                <github-repos v-bind:repos="myRepoList" />
-            </div>
+            <about-section />
+        </section>
+        <section>
+            <github-section v-bind:repos="myRepoList" />
+        </section>
+        <section>
+            <projects-section />
         </section>
     </q-page>
 </template>
@@ -18,8 +20,17 @@ import { mapActions } from 'vuex'
 export default {
     name: 'PageIndex',
     components: {
-        'github-repos': () => ({
-            component: import(/* webpackChunkName: "github" */ 'src/components/home/github')
+        'header-section': () => ({
+            component: import(/* webpackChunkName: "header-section" */ 'src/components/home/header')
+        }),
+        'about-section': () => ({
+            component: import(/* webpackChunkName: "about-section" */ 'src/components/home/about')
+        }),
+        'projects-section': () => ({
+            component: import(/* webpackChunkName: "projects-section" */ 'src/components/home/projects')
+        }),
+        'github-section': () => ({
+            component: import(/* webpackChunkName: "github-section" */ 'src/components/home/github')
         })
     },
     data () {
