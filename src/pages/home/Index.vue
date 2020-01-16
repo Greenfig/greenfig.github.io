@@ -7,6 +7,7 @@
             <about-section />
         </section>
         <section>
+            <a href="/#git"></a>
             <github-section v-bind:repos="myRepoList" />
         </section>
         <section>

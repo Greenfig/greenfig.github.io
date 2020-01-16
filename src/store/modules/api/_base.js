@@ -2,9 +2,7 @@ import axios from 'axios'
 import { Notify } from 'quasar'
 
 export const createNewInstance = () => {
-    const a = axios.create({
-        baseURL: 'https://api.github.com'
-    })
+    const a = axios.create()
 
     // Switch adapter
     a.defaults.adapter = require('axios/lib/adapters/http')

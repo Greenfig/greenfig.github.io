@@ -3,69 +3,69 @@
         <div class="container-label">
             Git Repos
         </div>
-        <div class="container-body">
-            <q-carousel
-                v-model="slide"
-                transition-prev="slide-right"
-                transition-next="slide-left"
-                swipeable
-                animated
-                control-color="primary"
-                padding
-                arrows
-                height="300px"
-                class="bg-white text-black shadow-1 rounded-borders no-shadow"
-            >
-                <q-carousel-slide :name="index"
-                                  class="column no-wrap"
-                                  v-for="(value, index) in repos"
-                                  :key="index">
-                    <div class="row fit justify-start items-center q-gutter-xs q-col-gutter no-wrap">
-                        <q-card flat
-                                bordered
-                                class="my-card"
-                        >
-                            <q-card-section class="card-head column">
-                                <div class="text-h6 card-head-title col-12">
-                                    <span style="margin:auto;">{{ value.name }}</span>
-                                </div>
-                            </q-card-section>
+        <div class="container-body row">
+            <div class="col-12 col-md-6 col-lg-6 my-card-container"
+                 v-for="(value, index) in repos"
+                 :name="index"
+                 :key="index">
+                <q-card flat
+                        bordered
+                        class="my-card"
+                >
+                    <q-card-section class="card-head column">
+                        <div class="text-h6 card-head-title col-12">
+                            <span style="margin:auto;">{{ value.name }}</span>
+                        </div>
+                    </q-card-section>
 
-                            <q-card-section>
-                                {{ value.description || "N/A" }}
-                            </q-card-section>
+                    <q-card-section>
+                        {{ value.description || "N/A" }}
+                    </q-card-section>
 
-                            <q-separator inset />
+                    <q-separator inset />
 
-                            <q-card-section class="row">
-                                <div class="col-auto" style="display:flex;">
-                                    <p style="margin:auto;">
-                                        {{ value.created_at }}
-                                    </p>
-                                </div>
-                                <div class="card-links col-auto">
-                                    <div class="card-links-a">
-                                        <a :href="value.html_url" target="_blank">
-                                            <q-tooltip>View code on github</q-tooltip>
-                                            <q-icon name="code" />
-                                        </a>
-                                    </div>
-                                </div>
-                            </q-card-section>
-                        </q-card>
-                    </div>
-                </q-carousel-slide>
-            </q-carousel>
+                    <q-card-section class="row">
+                        <div class="col-auto" style="display:flex;">
+                            <p style="margin:auto;">
+                                {{ new Date(value.created_at).toDateString() }}
+                            </p>
+                            <div style="margin:auto;padding:0 5px;">
+                                <div class="repo-language-circle" :style="getBgColor(value.language)"></div>
+                                <span style="margin:auto;">{{ value.language }}</span>
+                            </div>
+                        </div>
+                        <div class="card-links col-auto">
+                            <div class="card-links-a">
+                                <a :href="value.html_url" target="_blank">
+                                    <q-tooltip>View code on github</q-tooltip>
+                                    <q-icon name="code" />
+                                </a>
+                            </div>
+                        </div>
+                    </q-card-section>
+                </q-card>
+            </div>
         </div>
     </div>
 </template>
 <script>
+import gcolors from 'src/assets/githubcolors'
+import { mapActions } from 'vuex'
 export default {
     props: ['repos'],
     data () {
         return {
             slide: 0
         }
+    },
+    methods: {
+        ...mapActions(['GET_USER_REPO_LANG']),
+        getBgColor (lang) {
+            return `background-color:${gcolors[lang]}`
+        }
+    },
+    mounted () {
+        console.log(gcolors)
     }
 }
 </script>
@@ -109,12 +109,22 @@ export default {
         }
     }
 }
-.my-card {
+.my-card-container {
     // min-width:198px;
-    width:100%;
+    // width:100%;
     // max-width:320px;
+    padding: 10px;
 }
 .q-card__section {
     min-height: 55px;
+}
+.repo-language-circle {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin:0 2px;
 }
 </style>

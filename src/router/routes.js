@@ -2,38 +2,36 @@ const routes = [
     {
         path: '/',
         title: 'About',
-        name: 'About',
         hidden: false,
         component: () => import(/* webpackChunkName: "baseLayout" */ 'layouts/base'),
         children: [
             {
                 path: '',
+                name: 'About',
                 component: () => import(/* webpackChunkName: "home" */ 'pages/home'),
                 children: [
-                    { path: '/git' },
-                    { path: '/projects' }
+                    { path: '/git', title: 'Repos' },
+                    { path: '/projects', title: 'Projects' }
                 ]
             }
         ]
     },
     {
-        path: 'resume',
+        path: '/resume',
         title: 'Resume',
-        name: 'Resume',
         hidden: false,
         component: () => import(/* webpackChunkName: "baseLayout" */ 'layouts/base'),
         children: [
-            { path: '', component: () => import(/* webpackChunkName: "resume" */ 'pages/resume') }
+            { path: '', name: 'Resume', component: () => import(/* webpackChunkName: "resume" */ 'pages/resume') }
         ]
     },
     {
-        path: 'contact',
+        path: '/contact',
         title: 'Contact',
-        name: 'Contact',
         hidden: false,
         component: () => import(/* webpackChunkName: "baseLayout" */ 'layouts/base'),
         children: [
-            { path: '', component: () => import(/* webpackChunkName: "contact" */ 'pages/contact') }
+            { path: '', name: 'Contact', component: () => import(/* webpackChunkName: "contact" */ 'pages/contact') }
         ]
     }
 

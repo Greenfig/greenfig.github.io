@@ -24,8 +24,7 @@
     max-height: 100vh;
 }
 .q-page-container {
-    // min-height: 100vh;
-    // max-height: 100vh;
+    min-height: calc(100vh - 51px);
 }
 .q-page {
     // overflow: auto;

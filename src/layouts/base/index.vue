@@ -22,10 +22,16 @@
                     </ul>
                 </q-toolbar-title>
                 <q-tabs align="left">
+                    <!-- Home routes -->
+                    <q-route-tab :to="value.path"
+                                 :label="value.title"
+                                 v-for="(value, index) in homeRoutes.children[0].children"
+                                 :key="`${index}-home`" />
+                    <!-- Other routes -->
                     <q-route-tab :to="value.path"
                                  :label="value.title"
                                  v-for="(value, index) in otherRoutes"
-                                 :key="index" />
+                                 :key="`${index}-other`" />
                 </q-tabs>
             </q-toolbar>
 
