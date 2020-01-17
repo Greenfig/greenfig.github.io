@@ -11,10 +11,9 @@
                     </div>
                     <h5>Frontend</h5>
                     <ul>
-                        <li><q-icon name="done_all" />Vuejs</li>
-                        <li><q-icon name="done_all" />Vuejs</li>
-                        <li><q-icon name="done_all" />Vuejs</li>
-                        <li><q-icon name="done_all" />Vuejs</li>
+                        <li><q-icon name="done_all" />HTML / CSS / SCSS</li>
+                        <li><q-icon name="done_all" />Javascript / JQuery</li>
+                        <li><q-icon name="done_all" />Webpack</li>
                         <li><q-icon name="done_all" />Vuejs</li>
                     </ul>
                 </q-card>
@@ -24,13 +23,12 @@
                     <div>
                         <q-icon name="dns" />
                     </div>
-                    <h5>Frontend</h5>
+                    <h5>Backend</h5>
                     <ul>
-                        <li><q-icon name="done_all" />Vuejs</li>
-                        <li><q-icon name="done_all" />Vuejs</li>
-                        <li><q-icon name="done_all" />Vuejs</li>
-                        <li><q-icon name="done_all" />Vuejs</li>
-                        <li><q-icon name="done_all" />Vuejs</li>
+                        <li><q-icon name="done_all" />Asp.Net &amp; .Net Core</li>
+                        <li><q-icon name="done_all" />Nodejs &amp; Nodejs C++ addons</li>
+                        <li><q-icon name="done_all" />PHP</li>
+                        <li><q-icon name="done_all" />PostgreSQL / MySQL / MSSQL</li>
                     </ul>
                 </q-card>
             </div>
@@ -39,13 +37,12 @@
                     <div>
                         <q-icon name="build" />
                     </div>
-                    <h5>Frameworks</h5>
+                    <h5>Other</h5>
                     <ul>
-                        <li><q-icon name="done_all" />Vuejs</li>
-                        <li><q-icon name="done_all" />Vuejs</li>
-                        <li><q-icon name="done_all" />Vuejs</li>
-                        <li><q-icon name="done_all" />Vuejs</li>
-                        <li><q-icon name="done_all" />Vuejs</li>
+                        <li><q-icon name="done_all" />Visual Studio &amp; VS Code</li>
+                        <li><q-icon name="done_all" />Entity Framework</li>
+                        <li><q-icon name="done_all" />MVC5 / MVVM</li>
+                        <li><q-icon name="done_all" />OpenMp / CUDA</li>
                     </ul>
                 </q-card>
             </div>
@@ -63,6 +60,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 /deep/.q-card {
+    height: calc(100% - 52px);
     margin: 0 15px;
     > div {
         margin-top: 40px;

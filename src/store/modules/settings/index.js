@@ -1,8 +1,12 @@
-const state = require('../../../../appsettings.json')
+const state = {
+    appSettings: require('../../../../appsettings.json'),
+    githubRepos: require('src/assets/githubreposinfo.json')
+}
 
 const getters = {
-    getGithubSettings: (state) => state.github,
-    getLinkedinSettings: (state) => state.linkedin
+    getGithubSettings: (state) => state.appSettings.github,
+    getLinkedinSettings: (state) => state.appSettings.linkedin,
+    getGithubRepoSettings: (state) => state.githubRepos.repos
 }
 
 export default {

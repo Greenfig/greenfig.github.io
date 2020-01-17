@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 export default {
     name: 'PageIndex',
     components: {
@@ -39,18 +39,11 @@ export default {
             myRepoList: []
         }
     },
-    methods: {
-        ...mapActions(['GET_USER_REPOS']),
-        async getRepoList () {
-            try {
-                this.myRepoList = await this.GET_USER_REPOS().catch(err => Promise.reject(err))
-            } catch (err) {
-                console.error(err)
-            }
-        }
+    computed: {
+        ...mapGetters(['getGithubRepoSettings'])
     },
-    async mounted () {
-        await this.getRepoList()
+    mounted () {
+        this.myRepoList = this.getGithubRepoSettings
     }
 }
 </script>

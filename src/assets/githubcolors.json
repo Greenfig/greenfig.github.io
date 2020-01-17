@@ -3,6 +3,7 @@
     "TypeScript": "#2b7489",
     "PureBasic": "#5a6986",
     "Objective-C++": "#6866fb",
+    "C++": "#6866fb",
     "Self": "#0579aa",
     "edn": "#db5855",
     "NewLisp": "#87AED7",
@@ -114,6 +115,7 @@
     "FLUX": "#88ccff",
     "NetLogo": "#ff6375",
     "C Sharp": "#178600",
+    "C#": "#178600",
     "CSS": "#563d7c",
     "Emacs Lisp": "#c065db",
     "Stan": "#b2011d",
@@ -196,5 +198,7 @@
     "cpp": "#f34b7d",
     "AGS Script": "#B9D9FF",
     "Dogescript": "#cca760",
-    "nesC": "#94B0C7"
+    "nesC": "#94B0C7",
+    "Cuda": "#3A4E3A",
+    "Batchfile": "#C1F12E"
 }

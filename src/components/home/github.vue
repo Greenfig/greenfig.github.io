@@ -29,9 +29,11 @@
                             <p style="margin:auto;">
                                 {{ new Date(value.created_at).toDateString() }}
                             </p>
-                            <div style="margin:auto;padding:0 5px;">
-                                <div class="repo-language-circle" :style="getBgColor(value.language)"></div>
-                                <span style="margin:auto;">{{ value.language }}</span>
+                            <div style="margin:auto;padding:0 5px;"
+                                 v-for="(langObj, langIndex) in value.languages_info"
+                                 :key="`${langIndex}-langs`">
+                                <div class="repo-language-circle" :style="getBgColor(langObj.key)"></div>
+                                <span style="margin:auto;">{{ `${langObj.key} - ${langObj.percent}`}}</span>
                             </div>
                         </div>
                         <div class="card-links col-auto">
@@ -53,11 +55,6 @@ import gcolors from 'src/assets/githubcolors'
 import { mapActions } from 'vuex'
 export default {
     props: ['repos'],
-    data () {
-        return {
-            slide: 0
-        }
-    },
     methods: {
         ...mapActions(['GET_USER_REPO_LANG']),
         getBgColor (lang) {
@@ -65,7 +62,7 @@ export default {
         }
     },
     mounted () {
-        console.log(gcolors)
+        console.log('hsdfsd')
     }
 }
 </script>
