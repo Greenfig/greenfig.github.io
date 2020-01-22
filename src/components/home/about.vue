@@ -4,45 +4,17 @@
             Skills
         </div>
         <div class="row container-body">
-            <div class="col-12 col-md-4 col-lg-4">
+            <div class="col-12 col-md-6 col-lg-3"
+                 v-for="(skill, index) in mySkills"
+                 :key="index">
                 <q-card class="col-12">
                     <div>
-                        <q-icon name="devices" />
+                        <q-icon :name="skill.icon" />
                     </div>
-                    <h5>Frontend</h5>
+                    <h5>{{ skill.title }}</h5>
                     <ul>
-                        <li><q-icon name="done_all" />HTML / CSS / SCSS</li>
-                        <li><q-icon name="done_all" />Javascript / JQuery</li>
-                        <li><q-icon name="done_all" />Webpack</li>
-                        <li><q-icon name="done_all" />Vuejs</li>
-                    </ul>
-                </q-card>
-            </div>
-            <div class="col-12 col-md-4 col-lg-4">
-                <q-card class="col-12">
-                    <div>
-                        <q-icon name="dns" />
-                    </div>
-                    <h5>Backend</h5>
-                    <ul>
-                        <li><q-icon name="done_all" />Asp.Net &amp; .Net Core</li>
-                        <li><q-icon name="done_all" />Nodejs &amp; Nodejs C++ addons</li>
-                        <li><q-icon name="done_all" />PHP</li>
-                        <li><q-icon name="done_all" />PostgreSQL / MySQL / MSSQL</li>
-                    </ul>
-                </q-card>
-            </div>
-            <div class="col-12 col-md-4 col-lg-4">
-                <q-card class="col-12">
-                    <div>
-                        <q-icon name="build" />
-                    </div>
-                    <h5>Other</h5>
-                    <ul>
-                        <li><q-icon name="done_all" />Visual Studio &amp; VS Code</li>
-                        <li><q-icon name="done_all" />Entity Framework</li>
-                        <li><q-icon name="done_all" />MVC5 / MVVM</li>
-                        <li><q-icon name="done_all" />OpenMp / CUDA</li>
+                        <li v-for="(skillset, sindex) in skill.skillsets"
+                            :key="sindex"><q-icon name="done_all"/>{{ skillset }}</li>
                     </ul>
                 </q-card>
             </div>
@@ -53,7 +25,53 @@
 export default {
     data () {
         return {
-
+            mySkills: [
+                {
+                    icon: 'devices',
+                    title: 'Languages',
+                    skillsets: [
+                        'C#',
+                        'HTML / CSS / SCSS',
+                        'Javascript ES6+',
+                        'Java',
+                        'Python',
+                        'PHP'
+                    ]
+                },
+                {
+                    icon: 'dns',
+                    title: 'Technologies',
+                    skillsets: [
+                        'Asp.Net & .Net Core',
+                        'Nodejs & Nodejs addons',
+                        'Vuejs',
+                        'MVC5 & MVVM',
+                        'OpenMp',
+                        'CUDA'
+                    ]
+                },
+                {
+                    icon: 'storage',
+                    title: 'Databases',
+                    skillsets: [
+                        'MSSql',
+                        'MySql',
+                        'Lucene .Net (Solr)',
+                        'PostgreSql',
+                        'Sqlite3'
+                    ]
+                },
+                {
+                    icon: 'build',
+                    title: 'Other',
+                    skillsets: [
+                        'Android Studio',
+                        'Microsoft Office',
+                        'Visual Studio & Code',
+                        'Azure Functions'
+                    ]
+                }
+            ]
         }
     }
 }

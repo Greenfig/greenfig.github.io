@@ -23,7 +23,7 @@ export default {
         return {
             myPhoto: 'https://via.placeholder.com/200',
             myName: 'Rene Anderson',
-            myDesc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
+            myDesc: "Persistent and results oriented software developer, seeking an opportunity to continue and expand my learning in the field. Searching for elegant and efficient solutions to problems while writing maintainable and readable code. I enjoy new challenges and I'm always eager to learn."
         }
     }
 }
