@@ -2,7 +2,7 @@
     <q-layout view="hHh lpR fFf">
 
         <q-header bordered
-                  class="bg-primary text-white"
+                  class="text-white"
                   height-hint="98">
             <q-toolbar>
                 <q-toolbar-title>

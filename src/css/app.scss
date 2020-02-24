@@ -24,6 +24,7 @@
     max-height: 100vh;
 }
 .q-page-container {
+    padding-top: 0 !important;
     min-height: calc(100vh - 51px);
 }
 .q-page {
@@ -32,11 +33,13 @@
 }
 .my-header {
     min-height: 150px;
-    background-color: #41a4f5;
     color: #fff;
     font-weight: bold;
     font-size: 2rem;
-    padding: 40px 0;
+    // padding: 40px 0;
+}
+.q-header {
+    background-color: #00000080;
 }
 
 @media (min-width: 576px) {
@@ -63,6 +66,7 @@
     width: 100%;
     padding-right: 15px;
     padding-left: 15px;
+    padding-top: 51px;
     margin-right: auto;
     margin-left: auto;
     &-label {
@@ -78,4 +82,5 @@
 }
 body {
     color: #64829c;
+    background-color: #eeeeff;
 }

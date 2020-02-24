@@ -1,7 +1,7 @@
 <template>
     <q-page>
-        <section class="my-header">
-            <header-section />
+        <section class="my-header" :style="myHeaderStyle">
+            <header-section v-bind:setHeader="setMyHeaderStyle" />
         </section>
         <section>
             <about-section />
@@ -36,11 +36,17 @@ export default {
     },
     data () {
         return {
-            myRepoList: []
+            myRepoList: [],
+            myHeaderStyle: {}
         }
     },
     computed: {
         ...mapGetters(['getGithubRepoSettings'])
+    },
+    methods: {
+        setMyHeaderStyle (style) {
+            this.myHeaderStyle = style
+        }
     },
     mounted () {
         this.myRepoList = this.getGithubRepoSettings
