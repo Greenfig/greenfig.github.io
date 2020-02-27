@@ -1,54 +1,57 @@
 <template>
-    <div class="container">
-        <div class="container-label">
-            Git Repos
-        </div>
-        <div class="container-body row">
-            <div class="col-12 col-md-6 col-lg-6 my-card-container"
-                 v-for="(value, index) in repos"
-                 :name="index"
-                 :key="index">
-                <q-card flat
-                        bordered
-                        class="my-card"
-                >
-                    <q-card-section class="card-head column">
-                        <div class="text-h6 card-head-title col-12">
-                            <span style="margin:auto;">{{ value.name }}</span>
-                        </div>
-                    </q-card-section>
-
-                    <q-card-section>
-                        {{ value.description || "N/A" }}
-                    </q-card-section>
-
-                    <q-separator inset />
-
-                    <q-card-section class="row">
-                        <div class="col-auto" style="display:flex;">
-                            <p style="margin:auto;">
-                                {{ new Date(value.created_at).toDateString() }}
-                            </p>
-                            <div style="margin:auto;padding:0 5px;"
-                                 v-for="(langObj, langIndex) in value.languages_info"
-                                 :key="`${langIndex}-langs`">
-                                <div class="repo-language-circle" :style="getBgColor(langObj.key)"></div>
-                                <span style="margin:auto;">{{ `${langObj.key} - ${langObj.percent}`}}</span>
+    <section>
+        <a href="/#git"></a>
+        <div class="container">
+            <div class="container-label">
+                Git Repos
+            </div>
+            <div class="container-body row">
+                <div class="col-12 col-md-6 col-lg-6 my-card-container"
+                     v-for="(value, index) in repos"
+                     :name="index"
+                     :key="index">
+                    <q-card flat
+                            bordered
+                            class="my-card"
+                    >
+                        <q-card-section class="card-head column">
+                            <div class="text-h6 card-head-title col-12">
+                                <span style="margin:auto;">{{ value.name }}</span>
                             </div>
-                        </div>
-                        <div class="card-links col-auto">
-                            <div class="card-links-a">
-                                <a :href="value.html_url" target="_blank">
-                                    <q-tooltip>View code on github</q-tooltip>
-                                    <q-icon name="code" />
-                                </a>
+                        </q-card-section>
+
+                        <q-card-section>
+                            {{ value.description || "N/A" }}
+                        </q-card-section>
+
+                        <q-separator inset />
+
+                        <q-card-section class="row">
+                            <div class="col-auto" style="display:flex;">
+                                <p style="margin:auto;">
+                                    {{ new Date(value.created_at).toDateString() }}
+                                </p>
+                                <div style="margin:auto;padding:0 5px;"
+                                     v-for="(langObj, langIndex) in value.languages_info"
+                                     :key="`${langIndex}-langs`">
+                                    <div class="repo-language-circle" :style="getBgColor(langObj.key)"></div>
+                                    <span style="margin:auto;">{{ `${langObj.key} - ${langObj.percent}`}}</span>
+                                </div>
                             </div>
-                        </div>
-                    </q-card-section>
-                </q-card>
+                            <div class="card-links col-auto">
+                                <div class="card-links-a">
+                                    <a :href="value.html_url" target="_blank">
+                                        <q-tooltip>View code on github</q-tooltip>
+                                        <q-icon name="code" />
+                                    </a>
+                                </div>
+                            </div>
+                        </q-card-section>
+                    </q-card>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 </template>
 <script>
 import gcolors from 'src/assets/githubcolors'

@@ -109,7 +109,8 @@ export default {
                 }
             }
             &:hover {
-                background-color:  #208ae5;
+                // background-color:  #208ae5;
+                background-color: #96969663;
             }
         }
     }

@@ -1,35 +1,37 @@
 <template>
-    <div class="container">
-        <div class="container-label">
-            Skills
-        </div>
-        <div class="row container-body">
-            <div class="col-12 col-md-6 col-lg-6"
-                 style="padding-bottom:20px;"
-                 v-for="(skill, index) in mySkills"
-                 :key="index">
-                <q-card class="col-12">
-                    <div>
-                        <q-icon :name="skill.icon" />
-                    </div>
-                    <h5>{{ skill.title }}</h5>
-                    <ul>
-                        <li v-for="(skillset, sindex) in skill.skillsets"
-                            :key="sindex"><div class="row">
-                                <div class="col-6">
-                                    <q-icon name="done_all"/>
-                                    {{ skillset.skill }}
+    <section>
+        <div class="container">
+            <div class="container-label">
+                Skills
+            </div>
+            <div class="row container-body">
+                <div class="col-12 col-md-6 col-lg-6"
+                     style="padding-bottom:20px;"
+                     v-for="(skill, index) in mySkills"
+                     :key="index">
+                    <q-card class="col-12">
+                        <div>
+                            <q-icon :name="skill.icon" />
+                        </div>
+                        <h5>{{ skill.title }}</h5>
+                        <ul>
+                            <li v-for="(skillset, sindex) in skill.skillsets"
+                                :key="sindex"><div class="row">
+                                    <div class="col-6">
+                                        <q-icon name="done_all"/>
+                                        {{ skillset.skill }}
+                                    </div>
+                                    <div class="col-6 progress-container">
+                                        <q-linear-progress rounded :value="skillset.level"/>
+                                    </div>
                                 </div>
-                                <div class="col-6 progress-container">
-                                    <q-linear-progress rounded :value="skillset.level"/>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </q-card>
+                            </li>
+                        </ul>
+                    </q-card>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 </template>
 <script>
 export default {

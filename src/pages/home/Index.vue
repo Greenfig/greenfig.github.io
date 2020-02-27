@@ -1,18 +1,9 @@
 <template>
     <q-page>
-        <section class="my-header" :style="myHeaderStyle">
-            <header-section v-bind:setHeader="setMyHeaderStyle" />
-        </section>
-        <section>
-            <about-section />
-        </section>
-        <section>
-            <a href="/#git"></a>
-            <github-section v-bind:repos="myRepoList" />
-        </section>
-        <section>
-            <projects-section />
-        </section>
+        <header-section />
+        <about-section />
+        <github-section v-bind:repos="myRepoList" />
+        <projects-section />
     </q-page>
 </template>
 
@@ -42,11 +33,6 @@ export default {
     },
     computed: {
         ...mapGetters(['getGithubRepoSettings'])
-    },
-    methods: {
-        setMyHeaderStyle (style) {
-            this.myHeaderStyle = style
-        }
     },
     mounted () {
         this.myRepoList = this.getGithubRepoSettings
