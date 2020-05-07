@@ -10,21 +10,23 @@
     "scripts": {
         "lint": "eslint --ext .js,.vue src",
         "lint:fix": "eslint --fix --ext .js,.vue src",
-        "test": "echo \"No test specified\" && exit 0",
-        "dev": "npm run lint:fix && quasar dev",
-        "build": "quasar build",
-        "build:pwa": "quasar build -m pwa"
+        "generate-repo-info": "node update/github.js",
+        "build:prod:spa": "npm run lint:fix && quasar build",
+        "build:prod:pwa": "npm run lint:fix && quasar build -m pwa",
+        "start:dev:spa": "npm run lint:fix && quasar dev",
+        "start:dev:pwa": "npm run lint:fix && quasar dev -m pwa"
     },
     "dependencies": {
-        "@quasar/extras": "^1.0.0",
+        "@quasar/extras": "^1.7.0",
         "axios": "^0.18.1",
-        "quasar": "^1.0.0",
-        "vue-i18n": "^8.0.0"
+        "fuzzysort": "^1.1.4",
+        "quasar": "^1.10.5",
+        "vue-i18n": "^8.17.4"
     },
     "devDependencies": {
-        "@quasar/app": "^1.0.0",
+        "@quasar/app": "^1.8.5",
         "@vue/eslint-config-standard": "^4.0.0",
-        "babel-eslint": "^10.0.1",
+        "babel-eslint": "^10.1.0",
         "eslint": "^5.10.0",
         "eslint-loader": "^2.1.1",
         "eslint-plugin-vue": "^5.0.0"

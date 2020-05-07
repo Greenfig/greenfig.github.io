@@ -7,7 +7,7 @@
             <div class="row container-body">
                 <div class="col-12 col-md-6 col-lg-6"
                      style="padding-bottom:20px;"
-                     v-for="(skill, index) in mySkills"
+                     v-for="(skill, index) in mySkillsData"
                      :key="index">
                     <q-card class="col-12">
                         <div>
@@ -85,6 +85,15 @@ export default {
                     ]
                 }
             ]
+        }
+    },
+    computed: {
+        mySkillsData: function () {
+            let data = this.mySkills
+            data.forEach(skill => {
+                skill.skillsets = skill.skillsets.sort((a, b) => b.level - a.level)
+            })
+            return data
         }
     }
 }

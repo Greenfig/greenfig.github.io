@@ -2,8 +2,8 @@
     <q-page>
         <header-section />
         <about-section />
-        <github-section v-bind:repos="myRepoList" />
         <projects-section />
+        <repos-section v-bind:repos="myRepoList" />
     </q-page>
 </template>
 
@@ -21,8 +21,8 @@ export default {
         'projects-section': () => ({
             component: import(/* webpackChunkName: "projects-section" */ 'src/components/home/projects')
         }),
-        'github-section': () => ({
-            component: import(/* webpackChunkName: "github-section" */ 'src/components/home/github')
+        'repos-section': () => ({
+            component: import(/* webpackChunkName: "repos-section" */ 'src/components/home/repos')
         })
     },
     data () {

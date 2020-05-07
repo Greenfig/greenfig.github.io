@@ -1,15 +1,6 @@
 <template>
     <section class="my-header"
-             :style="{
-                 backgroundImage: `url(${require('src/assets/php-code-min.jpg')})`,
-                 height: '100vh',
-                 backgroundSize: 'cover',
-                 backgroundColor: 'none',
-                 backgroundAttachment: 'fixed',
-                 backgroundRepeat: 'no-repeat',
-                 display: 'flex',
-                 verticalAlign: 'middle'
-             }">
+             :style="customStyle">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-lg-6">
@@ -25,10 +16,21 @@
     </section>
 </template>
 <script>
+import backgroundImage from 'src/assets/php-code-bg.jpg'
 export default {
     props: ['setHeader'],
     data () {
         return {
+            customStyle: {
+                backgroundImage: `url(${backgroundImage})`,
+                height: '100vh',
+                backgroundSize: 'cover',
+                backgroundColor: 'none',
+                backgroundAttachment: 'fixed',
+                backgroundRepeat: 'no-repeat',
+                display: 'flex',
+                verticalAlign: 'middle'
+            },
             myName: 'Rene Anderson',
             myDesc: "Persistent and results oriented software developer, seeking opportunities to continue and expand my learning in the field. Searching for elegant and efficient solutions to problems while writing maintainable and readable code. I enjoy new challenges and I'm always eager to learn."
         }

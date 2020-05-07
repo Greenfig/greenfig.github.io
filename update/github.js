@@ -6,7 +6,10 @@
     const axios = require('axios')
     const appSettings = require('../appsettings.json')
     const axiosInstance = axios.create()
+    const filePath = path.resolve(__dirname, `../src/assets/${fileName}`)
+
     axiosInstance.defaults.adapter = require('axios/lib/adapters/http')
+
     axiosInstance.get(`https://api.github.com/users/${appSettings.github.user}/repos`).then(async results => {
         const getFullLang = async (url) => {
             const langsResults = await axiosInstance.get(url).catch(err => Promise.reject(err))
@@ -26,6 +29,7 @@
             repos: results.data
         }
 
-        fs.writeFileSync(path.resolve(__dirname, `../src/assets/${fileName}`), JSON.stringify(newObj))
+        if (fs.existsSync(filePath)) fs.unlinkSync(filePath)
+        fs.writeFileSync(filePath, JSON.stringify(newObj))
     }).catch(console.error)
 })()
