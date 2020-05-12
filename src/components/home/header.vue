@@ -1,14 +1,16 @@
 <template>
     <section class="my-header"
              :style="customStyle">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-lg-6">
-                    <div class="name">
-                        {{ myName }}
-                    </div>
-                    <div class="desc">
-                        {{ myDesc }}
+        <div class="bg-blur">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-lg-6">
+                        <div class="name">
+                            {{ myName }}
+                        </div>
+                        <div class="desc">
+                            {{ myDesc }}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -27,9 +29,7 @@ export default {
                 backgroundSize: 'cover',
                 backgroundColor: 'none',
                 backgroundAttachment: 'fixed',
-                backgroundRepeat: 'no-repeat',
-                display: 'flex',
-                verticalAlign: 'middle'
+                backgroundRepeat: 'no-repeat'
             },
             myName: 'Rene Anderson',
             myDesc: "Persistent and results oriented software developer, seeking opportunities to continue and expand my learning in the field. Searching for elegant and efficient solutions to problems while writing maintainable and readable code. I enjoy new challenges and I'm always eager to learn."
@@ -38,6 +38,13 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.bg-blur {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    vertical-align: middle;
+    backdrop-filter: blur(5px);
+}
 .desc {
     font-weight: normal;
     font-size: 1.2rem;

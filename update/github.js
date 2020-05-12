@@ -22,6 +22,28 @@
 
         for (var repo of results.data) {
             repo.languages_info = await getFullLang(repo.languages_url)
+
+            // get readme
+            const readmeUrl = `${repo.url}/readme`
+
+            let results = await axiosInstance.get(readmeUrl).catch(err => Promise.reject(err))
+            let readmeData = results.data.content || null
+            if (readmeData) {
+                let readmeBuff = Buffer.from(readmeData, 'base64')
+                let readmeText = readmeBuff.toString('ascii')
+
+                repo.readme_text = readmeText
+            } else {
+                repo.readme_text = ''
+            }
+
+            // format search data
+            repo.fuzzy_search_data = `${repo.name} ${repo.description} ${repo.readme_text} ${repo.languages_info.reduce((result, current) => {
+                if (parseFloat(current.percent.match(/[0-9.]+/g)) > 5) {
+                    result.push(current.key)
+                }
+                return result
+            }, []).join(',')}`.replace(/\n{1,}/g, ' ').replace(/#{2,}/g, '').replace(/!?\[.+\]\(.*\)/g, '').replace(/```.+```/g, '').replace(/\s#\s/g, ' ')
         }
 
         const newObj = {

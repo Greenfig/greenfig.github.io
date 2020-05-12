@@ -3,13 +3,12 @@
         <a href="#git"></a>
         <div class="container">
             <div class="container-label">
-                Search my coding examples
+                Public Git Repo
             </div>
 
             <div class="row">
                 <div class="col-12 col-md-6 col-lg-6" style="margin:auto;">
-                    <q-input @keydown="searchRepo"
-                             v-model="repoSearchStr"
+                    <q-input v-model="repoSearchStr"
                              label="Search"
                              placeholder="C#, MVC">
                         <template v-slot:append>
@@ -72,7 +71,7 @@
                 </div>
                 <div v-else
                      style="display:flex;vertical-align:middle;width:100%;height:100%;">
-                    <span style="margin:auto;font-size:2.5rem;">My Coding Samples</span>
+                    <span style="margin:auto;font-size:2.5rem;color:#95b0c7;">Search Coding Samples</span>
                 </div>
             </div>
         </div>
@@ -80,10 +79,9 @@
 </template>
 <script>
 import gcolors from 'src/assets/githubcolors'
-import { mapActions } from 'vuex'
-import { goAsync } from 'fuzzysort'
+import { mapActions, mapGetters } from 'vuex'
+import { go } from 'fuzzysort'
 export default {
-    props: ['repos'],
     data () {
         return {
             repoSearchResults: [],
@@ -91,17 +89,15 @@ export default {
         }
     },
     computed: {
-        searchArray () {
-            return this.repos.map(repo => ({
-                id: repo.id,
-                data: `${repo.name} ${repo.description} ${repo.languages_info.reduce((result, current) => {
-                    if (parseFloat(current.percent.match(/[0-9.]+/g)) > 5) {
-                        result.push(current.key)
-                    }
-                    return result
-                }, []).join(',')}`
-            })
-            )
+        ...mapGetters(['githubRepoData']),
+        repos () {
+            return this.githubRepoData
+        }
+    },
+    watch: {
+        repoSearchStr (val) {
+            this.repoSearchStr = val
+            this.searchRepo()
         }
     },
     methods: {
@@ -109,18 +105,13 @@ export default {
         getBgColor (lang) {
             return `background-color:${gcolors[lang]}`
         },
-        async searchRepo () {
-            let results = await goAsync(this.repoSearchStr, this.searchArray, {
-                keys: ['data'],
+        searchRepo () {
+            let results = go(this.repoSearchStr, this.repos, {
+                keys: ['fuzzy_search_data'],
                 threshold: -1000
             })
-            this.repoSearchResults = results.map(res => this.repos.find(rep => rep.id === res.obj.id))
-
-            console.log(results)
+            this.repoSearchResults = results.sort((a, b) => a.score - b.score).map(res => this.repos.find(rep => rep.id === res.obj.id))
         }
-    },
-    mounted () {
-        console.log('hsdfsd')
     }
 }
 </script>
@@ -128,8 +119,8 @@ export default {
 <style lang="scss" scoped>
 .container-body {
     height: 530px;
-    overflow: scroll;
-    margin-bottom: 130px;
+    overflow: auto;
+    // margin-bottom: 130px;
 }
 .card-head {
     display: inline-flex;

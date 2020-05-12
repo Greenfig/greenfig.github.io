@@ -1,40 +1,23 @@
 const routes = [
     {
         path: '/',
-        title: 'About',
+        title: 'Main',
         hidden: false,
         component: () => import(/* webpackChunkName: "baseLayout" */ 'layouts/base'),
         children: [
             {
                 path: '',
-                name: 'About',
+                name: 'Main',
                 component: () => import(/* webpackChunkName: "home" */ 'pages/home'),
                 children: [
+                    { path: '/skills', title: 'Skills' },
                     { path: '/git', title: 'Repos' },
-                    { path: '/projects', title: 'Projects' }
+                    { path: '/projects', title: 'Projects' },
+                    { path: '/contact', title: 'Contact' }
                 ]
             }
         ]
-    },
-    {
-        path: '/resume',
-        title: 'Resume',
-        hidden: false,
-        component: () => import(/* webpackChunkName: "baseLayout" */ 'layouts/base'),
-        children: [
-            { path: '', name: 'Resume', component: () => import(/* webpackChunkName: "resume" */ 'pages/resume') }
-        ]
-    },
-    {
-        path: '/contact',
-        title: 'Contact',
-        hidden: false,
-        component: () => import(/* webpackChunkName: "baseLayout" */ 'layouts/base'),
-        children: [
-            { path: '', name: 'Contact', component: () => import(/* webpackChunkName: "contact" */ 'pages/contact') }
-        ]
     }
-
 ]
 
 // Always leave this as last one

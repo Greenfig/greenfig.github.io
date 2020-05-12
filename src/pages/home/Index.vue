@@ -1,22 +1,21 @@
 <template>
     <q-page>
         <header-section />
-        <about-section />
+        <skills-section />
         <projects-section />
-        <repos-section v-bind:repos="myRepoList" />
+        <repos-section/>
     </q-page>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 export default {
     name: 'PageIndex',
     components: {
         'header-section': () => ({
             component: import(/* webpackChunkName: "header-section" */ 'src/components/home/header')
         }),
-        'about-section': () => ({
-            component: import(/* webpackChunkName: "about-section" */ 'src/components/home/about')
+        'skills-section': () => ({
+            component: import(/* webpackChunkName: "skills-section" */ 'src/components/home/skills')
         }),
         'projects-section': () => ({
             component: import(/* webpackChunkName: "projects-section" */ 'src/components/home/projects')
@@ -27,15 +26,8 @@ export default {
     },
     data () {
         return {
-            myRepoList: [],
             myHeaderStyle: {}
         }
-    },
-    computed: {
-        ...mapGetters(['getGithubRepoSettings'])
-    },
-    mounted () {
-        this.myRepoList = this.getGithubRepoSettings
     }
 }
 </script>
