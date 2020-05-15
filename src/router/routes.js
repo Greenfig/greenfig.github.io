@@ -1,19 +1,19 @@
 const routes = [
     {
-        path: '/',
+        path: '',
         title: 'Main',
         hidden: false,
         component: () => import(/* webpackChunkName: "baseLayout" */ 'layouts/base'),
         children: [
             {
                 path: '',
-                name: 'Main',
                 component: () => import(/* webpackChunkName: "home" */ 'pages/home'),
                 children: [
-                    { path: '/skills', title: 'Skills' },
-                    { path: '/git', title: 'Repos' },
-                    { path: '/projects', title: 'Projects' },
-                    { path: '/contact', title: 'Contact' }
+                    { path: '/', hash: '', title: 'Home' },
+                    { path: '/', hash: '#skills', title: 'Skills' },
+                    { path: '/', hash: '#projects', title: 'Projects' },
+                    { path: '/', hash: '#repos', title: 'Repos' },
+                    { path: '', hash: '#contact', title: 'Contact' }
                 ]
             }
         ]

@@ -20,8 +20,8 @@
                 </ul>
             </q-toolbar-title>
             <q-tabs align="left">
-                <!-- Home routes -->
-                <q-route-tab :to="value.path"
+                <!-- static routes -->
+                <q-route-tab :to="value"
                              :label="value.title"
                              v-for="(value, index) in homeRoutes.children[0].children"
                              :key="`${index}-home`" />
@@ -30,7 +30,7 @@
                              :label="value.title"
                              v-for="(value, index) in otherRoutes"
                              :key="`${index}-other`" />
-                <q-btn v-on:click="toggleResumeDialogue">
+                <q-btn v-on:click="toggleResumeDialogue" class="resume-btn">
                     Resume
                 </q-btn>
             </q-tabs>
@@ -63,6 +63,7 @@
 <script>
 import routes from 'src/router/routes'
 import { mapGetters } from 'vuex'
+
 export default {
     components: {
         'resume-section': () => ({
@@ -134,5 +135,9 @@ export default {
     &.active {
         font-weight: 500;
     }
+}
+.resume-btn {
+    margin-left: 10px;
+    background-color: #5e5d6d;
 }
 </style>

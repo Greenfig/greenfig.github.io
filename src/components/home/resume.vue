@@ -1,25 +1,20 @@
 <template>
-    <q-pdfviewer
-        v-model="show"
-        :src="resume"
-        type="pdfjs"
-        content-class="absolute"
-    />
+    <div id="pdfobject-id"></div>
 </template>
 
 <script>
 import resumePdf from 'src/assets/resume.pdf'
+import pdfObject from 'pdfobject'
 export default {
     props: ['show'],
-    computed: {
-        resume () {
-            console.log(resumePdf)
-            return resumePdf
-        }
+    mounted () {
+        pdfObject.embed(resumePdf, '#pdfobject-id')
     }
 }
 </script>
 
-<style>
-
+<style language="scss" scoped>
+.pdfobject-container {
+    height: calc(100vh - 32px);
+}
 </style>

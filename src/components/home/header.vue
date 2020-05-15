@@ -1,5 +1,6 @@
 <template>
-    <section class="my-header"
+    <section id="main"
+             class="my-header"
              :style="customStyle">
         <div class="bg-blur">
             <div class="container">
@@ -32,7 +33,8 @@ export default {
                 backgroundRepeat: 'no-repeat'
             },
             myName: 'Rene Anderson',
-            myDesc: "Persistent and results oriented software developer, seeking opportunities to continue and expand my learning in the field. Searching for elegant and efficient solutions to problems while writing maintainable and readable code. I enjoy new challenges and I'm always eager to learn."
+            myDesc: `Persistent and results oriented software developer. 
+            I enjoy searching for elegant and efficient solutions to problems while writing maintainable and readable code.`
         }
     }
 }
@@ -47,7 +49,7 @@ export default {
 }
 .desc {
     font-weight: normal;
-    font-size: 1.2rem;
+    font-size: 1.30rem;
     padding: 10px 0;
 }
 .name {
@@ -61,8 +63,8 @@ export default {
         > div {
             margin:auto;
             background: rgba(0, 0, 0, 0.88);
-            border: 5px solid white;
-            border-radius: 30px 0;
+            border: 2px solid white;
+            border-radius: 4px;
             text-align: center;
             padding: 15px;
         }

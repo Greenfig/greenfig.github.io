@@ -1,6 +1,5 @@
 <template>
-    <section>
-        <a href="#git"></a>
+    <section id="repos">
         <div class="container">
             <div class="container-label">
                 Public Git Repo
@@ -122,40 +121,42 @@ export default {
     overflow: auto;
     // margin-bottom: 130px;
 }
-.card-head {
-    display: inline-flex;
-    width: 100%;
-    word-break: break-word;
-    flex-wrap: wrap;
-    background: #eee;
-    color: #757575;
-}
-.card-links {
-    display: inline-flex;
-    margin-left: auto;
-    &-a{
-        padding: 0 5px;
+.card {
+    &-head {
+        display: inline-flex;
         width: 100%;
-        a {
-            color: #616161;
-            width: 36px;
-            height: 36px;
-            display: flex;
-            text-align: center;
-            border-radius: 50%;
-            text-decoration: none;
-            vertical-align: middle;
-            float: right;
-            i {
-                display: block;
-                font-size: 1.715em;
-                margin: auto;
-                &:hover {
-                    background-color: transparent;
+        word-break: break-word;
+        flex-wrap: wrap;
+        background: #8a89a0;
+        color: #eee;
+    }
+    &-links {
+        display: inline-flex;
+        margin-left: auto;
+        &-a{
+            padding: 0 5px;
+            width: 100%;
+            a {
+                color: #616161;
+                width: 36px;
+                height: 36px;
+                display: flex;
+                text-align: center;
+                border-radius: 50%;
+                text-decoration: none;
+                vertical-align: middle;
+                float: right;
+                i {
+                    display: block;
+                    font-size: 1.715em;
+                    margin: auto;
+                    &:hover {
+                        background-color: transparent;
+                    }
                 }
-            }
-            &:hover {
-                background-color:  #efefef;
+                &:hover {
+                    background-color:  #efefef;
+                }
             }
         }
     }
