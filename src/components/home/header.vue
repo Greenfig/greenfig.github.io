@@ -45,7 +45,7 @@ export default {
     height: 100vh;
     display: flex;
     vertical-align: middle;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(8px);
 }
 .desc {
     font-weight: normal;

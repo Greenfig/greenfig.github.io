@@ -44,7 +44,10 @@
                                     <div class="project-stack-list-item"
                                          v-for="(stk, sindex) in project.stack"
                                          :key="sindex">
-                                        <q-img class="project-stack-list-item-img" :src="stk" />
+                                        <q-img class="project-stack-list-item-img"
+                                               :src="stk.img"
+                                               v-on:click="openUrl(stk.link)" />
+                                        <q-tooltip>{{ stk.tip }}</q-tooltip>
                                     </div>
                                 </div>
                             </div>
@@ -80,11 +83,11 @@ export default {
                     },
                     img: require('src/assets/atbcheck.jpg'),
                     stack: [
-                        require('src/assets/vuejs.svg'),
-                        require('src/assets/aspcore.png'),
-                        require('src/assets/electron.png'),
-                        require('src/assets/nodejs.svg'),
-                        require('src/assets/postgresql.svg')
+                        { img: require('src/assets/vuejs.svg'), link: 'https://vuejs.org/', tip: 'VueJs' },
+                        { img: require('src/assets/aspcore.png'), link: 'https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-3.1', tip: 'Asp .Net Core' },
+                        { img: require('src/assets/electron.png'), link: 'https://www.electronjs.org/', tip: 'Electron' },
+                        { img: require('src/assets/nodejs.svg'), link: 'https://nodejs.org/en/', tip: 'NodeJs' },
+                        { img: require('src/assets/postgresql.svg'), link: 'https://www.postgresql.org/', tip: 'PostgreSQL' }
                     ]
                 },
                 {
@@ -100,8 +103,8 @@ export default {
                     },
                     img: require('src/assets/trinbago.jpg'),
                     stack: [
-                        require('src/assets/aspnet.png'),
-                        require('src/assets/lucene.png')
+                        { img: require('src/assets/aspnet.png'), link: 'https://dotnet.microsoft.com/apps/aspnet', tip: 'Asp .Net' },
+                        { img: require('src/assets/lucene.png'), link: 'https://lucenenet.apache.org/', tip: 'Lucene .Net' }
                     ]
                 }
             ]
@@ -129,7 +132,7 @@ export default {
 }
 .project {
     &-card {
-        margin: 0 0 15px 0;
+        margin: 0 0 45px 0;
     }
     &-img {
         background-color: #eeeeff;
@@ -166,6 +169,7 @@ export default {
                 font-size: 0.85rem;
                 &-img {
                     width: 45px;
+                    cursor: pointer;
                 }
             }
         }

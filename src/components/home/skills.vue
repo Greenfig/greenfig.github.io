@@ -18,11 +18,10 @@
                                 <li v-for="(skillset, sindex) in skill.skillsets"
                                     :key="sindex"
                                     class="skill-list-item"><div class="row">
-                                        <div class="col-6">
-                                            <q-icon name="done_all"/>
-                                            {{ skillset.skill }}
+                                        <div class="col-12">
+                                            <span>{{ skillset.skill }}</span><span style="float:right;">{{ rankPercent(skillset.level)}}</span>
                                         </div>
-                                        <div class="col-6 progress-container">
+                                        <div class="col-12 progress-container">
                                             <q-linear-progress rounded :value="skillset.level"/>
                                         </div>
                                     </div>
@@ -43,6 +42,11 @@ export default {
         mySkillsData () {
             return this.userSkillSettings
         }
+    },
+    methods: {
+        rankPercent (num) {
+            return `${Math.round(num * 100)}%`
+        }
     }
 }
 </script>
@@ -55,9 +59,9 @@ export default {
     }
     &-list {
         list-style: none;
-        line-height: 1.75;
         &-item {
-
+            line-height: 1.95;
+            margin-bottom: 10px;
         }
     }
 }
