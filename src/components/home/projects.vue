@@ -11,10 +11,7 @@
                             v-for="(project, index) in projects"
                             :key="index">
                         <q-card-section class="row" style="padding:0;">
-                            <q-img
-                                class="col-12 col-md-5 project-img"
-                                :src="project.img"
-                            />
+                            <q-img class="col-12 col-md-5 project-img" :src="project.img" />
 
                             <q-card-section class="col-12 col-md-7">
                                 <div class="project-title">
@@ -72,7 +69,7 @@ export default {
         return {
             projects: [
                 {
-                    title: 'WEB API AND DESKTOP APP (Compliance App)',
+                    title: 'WEB API AND DESKTOP APP (Compliance App) - Personal',
                     url: 'https://atbcheck.com',
                     summary: {
                         desc: `Atbcheck.com was built to provide companies with an easy and convienient way 
@@ -91,7 +88,7 @@ export default {
                     ]
                 },
                 {
-                    title: 'CONTENT MANAGEMENT SITE (Classifeid Ads)',
+                    title: 'CONTENT MANAGEMENT SITE (Classifeid Ads) - Personal',
                     url: 'https://trinbagohotspot.com',
                     summary: {
                         desc: `TrinbagoHotspot.com is a classified ad website 
@@ -164,7 +161,7 @@ export default {
                 background-color: white;
                 padding: 3px;
                 margin: 2px 10px;
-                box-shadow:0 1px 5px rgba(0, 0, 0, 0.2), 0 2px 2px rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12);
+                box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2), 0 2px 2px rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12);
                 cursor: default;
                 font-size: 0.85rem;
                 &-img {

@@ -10,7 +10,7 @@
                     <p>Email Address: {{ userEmail }}</p>
                 </div>
                 <div>
-                    <p style="font-size:15px;">
+                    <p style="font-size: 15px">
                         Powered by <a href="https://quasar.dev/" target="_blank">Quasar framework</a>
                     </p>
                     <p>© {{ publishedYear }} {{ userFullName }}. {{ userLocation }}.</p>
@@ -47,7 +47,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.footer{
+.footer {
     &-section {
         background-color: #5e5d6d;
         color: white;
@@ -60,7 +60,7 @@ export default {
             text-align: center;
             > p > a {
                 text-decoration: none;
-                color:#208ae5;
+                color: #208ae5;
                 font-weight: bolder;
             }
         }

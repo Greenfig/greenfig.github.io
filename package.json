@@ -1,43 +1,46 @@
 {
-    "name": "greenfig.github.io",
-    "version": "0.0.1",
-    "description": "A Quasar Framework app",
-    "productName": "Rene Anderson - Portfolio",
-    "cordovaId": "org.cordova.quasar.app",
-    "capacitorId": "",
-    "author": "Greenfig <rene_anderson@hotmail.com>",
-    "private": true,
-    "scripts": {
-        "lint": "eslint --ext .js,.vue src",
-        "lint:fix": "eslint --fix --ext .js,.vue src",
-        "generate-repo-info": "node update/github.js",
-        "build:prod:spa": "npm run lint:fix && quasar build",
-        "build:prod:pwa": "npm run lint:fix && quasar build -m pwa",
-        "start:dev:spa": "npm run lint:fix && quasar dev",
-        "start:dev:pwa": "npm run lint:fix && quasar dev -m pwa"
-    },
-    "dependencies": {
-        "@quasar/extras": "^1.7.0",
-        "axios": "^0.18.1",
-        "fuzzysort": "^1.1.4",
-        "pdfobject": "^2.1.1",
-        "quasar": "^1.10.5",
-        "vue-i18n": "^8.17.4"
-    },
-    "devDependencies": {
-        "@quasar/app": "^1.8.5",
-        "@vue/eslint-config-standard": "^4.0.0",
-        "babel-eslint": "^10.1.0",
-        "eslint": "^5.10.0",
-        "eslint-loader": "^2.1.1",
-        "eslint-plugin-vue": "^5.0.0"
-    },
-    "engines": {
-        "node": ">= 8.9.0",
-        "npm": ">= 5.6.0",
-        "yarn": ">= 1.6.0"
-    },
-    "browserslist": [
-        "last 1 version, not dead, ie >= 11"
-    ]
+  "name": "greenfig.github.io",
+  "version": "0.0.1",
+  "description": "A Quasar Framework app",
+  "productName": "Rene Anderson - Portfolio",
+  "cordovaId": "org.cordova.quasar.app",
+  "capacitorId": "",
+  "author": "Greenfig <rene_anderson@hotmail.com>",
+  "private": true,
+  "scripts": {
+    "lint": "eslint --ext .js,.vue src",
+    "lint:fix": "eslint --fix --ext .js,.vue src",
+    "generate-repo-info": "node update/github.js",
+    "build:prod:spa": "npm run lint:fix && quasar build",
+    "build:prod:pwa": "npm run lint:fix && quasar build -m pwa",
+    "start:dev:spa": "npm run lint:fix && quasar dev",
+    "start:dev:pwa": "npm run lint:fix && quasar dev -m pwa"
+  },
+  "dependencies": {
+    "@quasar/extras": "^1.7.0",
+    "axios": "^0.18.1",
+    "fuzzysort": "^1.1.4",
+    "pdfobject": "^2.1.1",
+    "quasar": "^1.10.5",
+    "vue-i18n": "^8.17.4"
+  },
+  "devDependencies": {
+    "@quasar/app": "^1.8.5",
+    "@vue/eslint-config-standard": "^4.0.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^5.10.0",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-loader": "^2.1.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-vue": "^5.0.0",
+    "strip-ansi": "^3.0.1"
+  },
+  "engines": {
+    "node": ">= 8.9.0",
+    "npm": ">= 5.6.0",
+    "yarn": ">= 1.6.0"
+  },
+  "browserslist": [
+    "last 1 version, not dead, ie >= 11"
+  ]
 }

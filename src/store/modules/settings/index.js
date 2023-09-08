@@ -13,10 +13,13 @@ const getters = {
         delete ui.projects
         return ui
     },
-    userSkillSettings: (state) => JSON.parse(JSON.stringify(state.appSettings.userInfo.skills)).map(skill => {
-        skill.skillsets = skill.skillsets.sort((a, b) => b.level - a.level)
-        return skill
-    }),
+    userSkillSettings: (state) => {
+        const skillRanking = Object.entries(state.appSettings.skillRanking)
+        return JSON.parse(JSON.stringify(state.appSettings.userInfo.skills)).map((skill) => {
+            skill.skillsets = skill.skillsets.sort((a, b) => b.level - a.level).map(({ skill, level }) => ({ skill, level: skillRanking.find(f => f[1] === level)[0] }))
+            return skill
+        })
+    },
     githubRepoData: (state) => state.githubRepos.repos
 }
 

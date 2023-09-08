@@ -3,7 +3,7 @@
         <header-section />
         <skills-section />
         <projects-section />
-        <repos-section/>
+        <repos-section />
     </q-page>
 </template>
 

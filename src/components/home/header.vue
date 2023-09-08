@@ -9,6 +9,7 @@
                         <div class="name">
                             {{ myName }}
                         </div>
+                        <span class="title">{{ myTitle }}</span>
                         <div class="desc">
                             {{ myDesc }}
                         </div>
@@ -33,6 +34,7 @@ export default {
                 backgroundRepeat: 'no-repeat'
             },
             myName: 'Rene Anderson',
+            myTitle: 'Remote First Software Developer',
             myDesc: `Persistent and results oriented software developer. 
             I enjoy searching for elegant and efficient solutions to problems while writing maintainable and readable code.`
         }
@@ -49,11 +51,16 @@ export default {
 }
 .desc {
     font-weight: normal;
-    font-size: 1.30rem;
+    font-size: 1.3rem;
     padding: 10px 0;
 }
 .name {
     font-size: 3rem;
+}
+.title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-style: italic;
 }
 .container {
     margin-top: auto;
@@ -61,7 +68,7 @@ export default {
     > div.row {
         vertical-align: middle;
         > div {
-            margin:auto;
+            margin: auto;
             background: rgba(0, 0, 0, 0.88);
             border: 2px solid white;
             border-radius: 4px;

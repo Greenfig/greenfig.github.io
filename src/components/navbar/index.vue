@@ -35,12 +35,11 @@
                 </q-btn>
             </q-tabs>
         </q-toolbar>
-        <q-dialog
-            v-model="showResumeDialogue"
-            persistent
-            :maximized="maximizedToggle"
-            transition-show="slide-up"
-            transition-hide="slide-down">
+        <q-dialog v-model="showResumeDialogue"
+                  persistent
+                  :maximized="maximizedToggle"
+                  transition-show="slide-up"
+                  transition-hide="slide-down">
             <q-card>
                 <q-bar>
                     <q-space />
@@ -54,7 +53,7 @@
                         </q-tooltip>
                     </q-btn>
                 </q-bar>
-                <resume-section :show="showResumeDialogue"/>
+                <resume-section :show="showResumeDialogue" />
             </q-card>
         </q-dialog>
     </q-header>
@@ -78,18 +77,22 @@ export default {
     },
     computed: {
         ...mapGetters(['githubSettings', 'linkedinSettings']),
-        homeRoutes () { return routes.find(f => f.title === 'Main' && !f.hidden) },
-        otherRoutes () { return routes.filter(f => f.title !== 'Main' && !f.hidden) }
+        homeRoutes () {
+            return routes.find((f) => f.title === 'Main' && !f.hidden)
+        },
+        otherRoutes () {
+            return routes.filter((f) => f.title !== 'Main' && !f.hidden)
+        }
     },
     methods: {
-        toggleResumeDialogue () { this.showResumeDialogue = !this.showResumeDialogue }
+        toggleResumeDialogue () {
+            this.showResumeDialogue = !this.showResumeDialogue
+        }
     }
-
 }
 </script>
 
 <style lang="scss" scoped>
-
 .toolbar-title-social {
     list-style: none;
     display: block;
@@ -107,7 +110,7 @@ export default {
             text-decoration: none;
             vertical-align: middle;
             i {
-                font-size: .915em;
+                font-size: 0.915em;
                 margin: auto;
                 &:hover {
                     background-color: transparent;
@@ -126,7 +129,8 @@ export default {
         width: 110px;
     }
 }
-/deep/.q-tab, a {
+/deep/.q-tab,
+a {
     -webkit-transition: all 0.4s ease-in-out;
     transition: all 0.4s ease-in-out;
 }

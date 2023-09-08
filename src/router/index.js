@@ -28,7 +28,7 @@ export default function (/* { store, ssrContext } */) {
                     setScrollPosition(target, offset, duration)
                     return false
                 }
-                return ({ x: 0, y: 0 })
+                return { x: 0, y: 0 }
             }
         },
         routes,

@@ -1,14 +1,12 @@
 <template>
     <q-layout view="hHh lpR fFf">
-
-        <navbar-section/>
+        <navbar-section />
 
         <q-page-container>
             <router-view />
         </q-page-container>
 
         <footer-section />
-
     </q-layout>
 </template>
 

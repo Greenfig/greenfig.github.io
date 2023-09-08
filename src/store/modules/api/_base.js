@@ -9,7 +9,7 @@ export const createNewInstance = () => {
 
     // Setup response interceptor
     a.interceptors.response.use(
-        response => {
+        (response) => {
             if (response.data.message) {
                 Notify.create({
                     message: response.data.message,
@@ -17,10 +17,10 @@ export const createNewInstance = () => {
                     timeout: 3 * 1000
                 })
             }
-            return Promise.resolve(response.data.content ? response.data.content : (response.data || response))
+            return Promise.resolve(response.data.content ? response.data.content : response.data || response)
         },
-        error => {
-            const showMessage = msg =>
+        (error) => {
+            const showMessage = (msg) =>
                 Notify.create({
                     message: msg,
                     color: 'red',

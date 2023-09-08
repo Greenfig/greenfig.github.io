@@ -6,7 +6,7 @@
             </div>
 
             <div class="row">
-                <div class="col-12 col-md-6 col-lg-6" style="margin:auto;">
+                <div class="col-12 col-md-6 col-lg-6" style="margin: auto">
                     <q-input v-model="repoSearchStr"
                              label="Search"
                              placeholder="C#, MVC">
@@ -27,33 +27,31 @@
                          v-for="(value, index) in repoSearchResults"
                          :name="index"
                          :key="index">
-
                         <q-card flat
                                 bordered
-                                class="my-card"
-                        >
+                                class="my-card">
                             <q-card-section class="card-head column">
                                 <div class="text-h6 card-head-title col-12">
-                                    <span style="margin:auto;">{{ value.name }}</span>
+                                    <span style="margin: auto">{{ value.name }}</span>
                                 </div>
                             </q-card-section>
 
                             <q-card-section>
-                                {{ value.description || "N/A" }}
+                                {{ value.description || 'N/A' }}
                             </q-card-section>
 
                             <q-separator inset />
 
                             <q-card-section class="row">
-                                <div class="col-auto" style="display:flex;">
-                                    <p style="margin:auto;">
+                                <div class="col-auto" style="display: flex">
+                                    <p style="margin: auto">
                                         {{ new Date(value.created_at).toDateString() }}
                                     </p>
-                                    <div style="margin:auto;padding:0 5px;"
+                                    <div style="margin: auto; padding: 0 5px"
                                          v-for="(langObj, langIndex) in value.languages_info"
                                          :key="`${langIndex}-langs`">
                                         <div class="repo-language-circle" :style="getBgColor(langObj.key)"></div>
-                                        <span style="margin:auto;">{{ `${langObj.key} - ${langObj.percent}`}}</span>
+                                        <span style="margin: auto">{{ `${langObj.key} - ${langObj.percent}` }}</span>
                                     </div>
                                 </div>
                                 <div class="card-links col-auto">
@@ -68,9 +66,8 @@
                         </q-card>
                     </div>
                 </div>
-                <div v-else
-                     style="display:flex;vertical-align:middle;width:100%;height:100%;">
-                    <span style="margin:auto;font-size:2.5rem;color:#95b0c7;">Search Coding Samples</span>
+                <div v-else style="display: flex; vertical-align: middle; width: 100%; height: 100%">
+                    <span style="margin: auto; font-size: 2.5rem; color: #95b0c7">Search Coding Samples</span>
                 </div>
             </div>
         </div>
@@ -94,9 +91,11 @@ export default {
         }
     },
     watch: {
-        repoSearchStr (val) {
-            this.repoSearchStr = val
-            this.searchRepo()
+        repoSearchStr: {
+            handler (val) {
+                this.repoSearchStr = val
+                this.searchRepo()
+            }
         }
     },
     methods: {
@@ -105,11 +104,12 @@ export default {
             return `background-color:${gcolors[lang]}`
         },
         searchRepo () {
+            console.log(this.repos)
             let results = go(this.repoSearchStr, this.repos, {
                 keys: ['fuzzy_search_data'],
                 threshold: -1000
             })
-            this.repoSearchResults = results.sort((a, b) => a.score - b.score).map(res => this.repos.find(rep => rep.id === res.obj.id))
+            this.repoSearchResults = results.sort((a, b) => a.score - b.score).map((res) => this.repos.find((rep) => rep.id === res.obj.id))
         }
     }
 }
@@ -133,7 +133,7 @@ export default {
     &-links {
         display: inline-flex;
         margin-left: auto;
-        &-a{
+        &-a {
             padding: 0 5px;
             width: 100%;
             a {
@@ -155,7 +155,7 @@ export default {
                     }
                 }
                 &:hover {
-                    background-color:  #efefef;
+                    background-color: #efefef;
                 }
             }
         }
@@ -177,6 +177,6 @@ export default {
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    margin:0 2px;
+    margin: 0 2px;
 }
 </style>

@@ -10,12 +10,16 @@
 
     axiosInstance.defaults.adapter = require('axios/lib/adapters/http')
 
-    axiosInstance.get(`https://api.github.com/users/${appSettings.github.user}/repos`).then(async results => {
+    axiosInstance.get(`https://api.github.com/users/${appSettings.github.username}/repos`).then(async results => {
         const getFullLang = async (url) => {
             const langsResults = await axiosInstance.get(url).catch(err => Promise.reject(err))
-            const totalVal = Object.values(langsResults.data).reduce((sum, value) => sum + value)
-            return Object.keys(langsResults.data).map(key => {
-                const percent = `${((langsResults.data[key] / totalVal) * 100).toFixed(2)}%`
+            const totalVal = Object.values(langsResults.data).reduce((sum, value) => {
+                sum += value
+                return sum
+            }, {})
+            console.log(langsResults.data, totalVal)
+            return Object.entries(langsResults.data).map(([key, value]) => {
+                const percent = `${((value / totalVal) * 100).toFixed(2)}%`
                 return ({ key, percent })
             })
         }
@@ -25,12 +29,11 @@
 
             // get readme
             const readmeUrl = `${repo.url}/readme`
-
-            let results = await axiosInstance.get(readmeUrl).catch(err => Promise.reject(err))
-            let readmeData = results.data.content || null
+            const results = await axiosInstance.get(readmeUrl).catch(err => Promise.reject(err))
+            const readmeData = results.data.content || null
             if (readmeData) {
-                let readmeBuff = Buffer.from(readmeData, 'base64')
-                let readmeText = readmeBuff.toString('ascii')
+                const readmeBuff = Buffer.from(readmeData, 'base64')
+                const readmeText = readmeBuff.toString('ascii')
 
                 repo.readme_text = readmeText
             } else {
