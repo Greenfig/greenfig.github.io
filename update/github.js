@@ -16,7 +16,7 @@
             const totalVal = Object.values(langsResults.data).reduce((sum, value) => {
                 sum += value
                 return sum
-            }, {})
+            }, 0)
             console.log(langsResults.data, totalVal)
             return Object.entries(langsResults.data).map(([key, value]) => {
                 const percent = `${((value / totalVal) * 100).toFixed(2)}%`
