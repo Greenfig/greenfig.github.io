@@ -104,7 +104,7 @@ export default {
             return `background-color:${gcolors[lang]}`
         },
         searchRepo () {
-            console.log(this.repos)
+            console.log(this.repos, this.repoSearchStr)
             let results = go(this.repoSearchStr, this.repos, {
                 keys: ['fuzzy_search_data'],
                 threshold: -1000
