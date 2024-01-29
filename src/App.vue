@@ -7,8 +7,17 @@
 </template>
 
 <script>
+import GoogleAnalytics from 'src/plugins/google-analytics'
+import { mapGetters } from 'vuex'
+// import Vue from 'vue'
 export default {
-    name: 'App'
+    name: 'App',
+    computed: {
+        ...mapGetters(['googleSettings'])
+    },
+    created () {
+        GoogleAnalytics.setup(this.googleSettings.analytics)
+    }
 }
 </script>
 

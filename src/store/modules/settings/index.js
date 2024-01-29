@@ -6,6 +6,7 @@ const state = {
 const getters = {
     githubSettings: (state) => state.appSettings.userInfo.social.github,
     linkedinSettings: (state) => state.appSettings.userInfo.social.linkedin,
+    googleSettings: (state) => state.appSettings.google,
     userInfoSettings: (state) => {
         let ui = JSON.parse(JSON.stringify(state.appSettings.userInfo))
         delete ui.social
